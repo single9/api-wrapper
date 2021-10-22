@@ -1,0 +1,42 @@
+{
+  "name": "@single9/api-wrapper",
+  "version": "0.0.1",
+  "description": "Call your APIs like a function.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc"
+  },
+  "keywords": [
+    "restful",
+    "rest",
+    "http",
+    "api",
+    "wrapper"
+  ],
+  "author": "Duye Chen",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.23.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.11.1",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.0.1",
+    "typescript": "^4.4.4"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/single9/api-tester.git"
+  },
+  "bugs": {
+    "url": "https://github.com/single9/api-tester/issues"
+  },
+  "homepage": "https://github.com/single9/api-tester#readme"
+}
