@@ -1,3 +1,9 @@
+.github
+.nyc_output
+.eslintrc
+tsconfig.json
 node_modules
 examples
 src
+coverage
+test
