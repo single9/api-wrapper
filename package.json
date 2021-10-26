@@ -33,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/single9/api-tester.git"
+    "url": "git+https://github.com/single9/api-wrapper.git"
   },
   "bugs": {
-    "url": "https://github.com/single9/api-tester/issues"
+    "url": "https://github.com/single9/api-wrapper/issues"
   },
-  "homepage": "https://github.com/single9/api-tester#readme"
+  "homepage": "https://github.com/single9/api-wrapper#readme"
 }
