@@ -1,6 +1,8 @@
 API Wrapper
 ===========
 
+[![codecov](https://codecov.io/gh/single9/api-wrapper/branch/main/graph/badge.svg?token=SXD7LZW7MU)](https://codecov.io/gh/single9/api-wrapper)
+
 Define and Call your restful APIs like a function.
 
 This package is based on [`@single9/api-tester`](https://www.npmjs.com/package/@single9/api-tester) but use [Axios](https://www.npmjs.com/package/axios) instead of [Request](https://www.npmjs.com/package/request).
