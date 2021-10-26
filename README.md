@@ -1,7 +1,9 @@
 API Wrapper
 ===========
 
-Call your APIs like a function.
+Define and Call your restful APIs like a function.
+
+This package is based on [`@single9/api-tester`](https://www.npmjs.com/package/@single9/api-tester) but use [Axios](https://www.npmjs.com/package/axios) instead of [Request](https://www.npmjs.com/package/request).
 
 Installation
 ============
@@ -17,6 +19,7 @@ const ApiWrapper = require('@single9/api-wrapper');
 
 Create
 ------
+
 ```js
 const api = new ApiWrapper([
   {
@@ -25,8 +28,8 @@ const api = new ApiWrapper([
     method: '<HTTP Method>',  // e.g. post
   },
 ], {
-  baseUrl: '<Base URL of API>'   // e.g. https://jsonplaceholder.typicode.com
-                              // Default: http://localhost:3000
+  baseUrl: '<Base URL of API>',   // e.g. https://jsonplaceholder.typicode.com
+                                  // Default: http://localhost:3000
   headers: {
     // The headers you want to send. e.g. 'authorization': 'Bearer SAdoweasd...',
   },
