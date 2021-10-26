@@ -28,7 +28,7 @@ export interface IApiSchemaOptions {
 }
 
 export interface ICallableApiFunction {
-  (param: IActionParams): Promise<AxiosResponse>
+  (param?: IActionParams): Promise<AxiosResponse>
 }
 
 export interface IActionParams extends AxiosRequestConfig {
