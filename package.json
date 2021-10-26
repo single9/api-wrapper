@@ -1,6 +1,6 @@
 {
   "name": "@single9/api-wrapper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Define and Call your restful APIs like a function.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,6 @@
     "build": "rm -rf dist && tsc",
     "test": "mocha --recursive -r ts-node/register --extension test.ts ./test",
     "test:coverage": "nyc --reporter=lcov npm test"
-
   },
   "keywords": [
     "restful",
