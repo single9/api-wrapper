@@ -27,7 +27,7 @@ const api = new ApiWrapper([
   {
     name: '<Api Name>',       // only allow certain words and digits
     path: '<Api Path>',       // e.g. /api/posts
-    method: '<HTTP Method>',  // e.g. post
+    method: '<HTTP Method>',  // e.g. post or POST
   },
 ], {
   baseUrl: '<Base URL of API>',   // e.g. https://jsonplaceholder.typicode.com
