@@ -1,10 +1,10 @@
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { AxiosResponse, AxiosRequestConfig, Method } from 'axios';
 
-type HTTPMethod = 'get' | 'post' | 'delete' | 'put' | 'patch' | 'head' | 'options';
-type ApiParamObj = {
+export type HTTPMethod = Method;
+export type ApiParamObj = {
   [key: string]: string | number;
 }
-type ApiParamArray = {
+export type ApiParamArray = {
   field: string;
   value: string | number;
 }[];
