@@ -4,7 +4,7 @@ import * as utils from '../src/utils'
 describe('utils', () => {
   it('should do request', async () => {
     const resp = await utils.request({
-      url: 'http://example.com',
+      url: 'https://google.com',
       method: 'GET',
     });
     should(resp).be.an.Object();
