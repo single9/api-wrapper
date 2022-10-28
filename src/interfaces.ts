@@ -1,4 +1,4 @@
-import { AxiosResponse, AxiosRequestConfig, Method } from 'axios';
+import { AxiosResponse, AxiosRequestConfig, Method, AxiosStatic } from 'axios';
 
 export type HTTPMethod = Method;
 export type ApiParamObj = {
@@ -22,11 +22,15 @@ export interface ICApiSchema {
 }
 
 export interface IApiSchemaOptions {
+  configureAxios?: ConfigureAxios;
   baseUrl?: string;
   headers?: IActionParams['headers'];
   auth?: IActionParams['auth'];
 }
 
+export interface ConfigureAxios {
+  (item: AxiosStatic): void;
+}
 export interface ICallableApiFunction {
   (param?: IActionParams): Promise<AxiosResponse>
 }

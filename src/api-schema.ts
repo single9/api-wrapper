@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   ICallableApiFunction,
   ICApiSchema,
@@ -8,11 +9,14 @@ import actions from './action';
 export class ApiSchema {
   [key: string]: ICallableApiFunction;
   constructor(schemas: ICApiSchema[], opts?: IApiSchemaOptions) {
+    const configureAxios = opts && opts.configureAxios;
     const baseUrl = opts && opts.baseUrl;
     const auth = opts && opts.auth;
     const headers = opts && opts.headers;
 
     if (!baseUrl) throw new Error('baseUrl must be specified');
+
+    if (configureAxios) configureAxios(axios);
 
     for (let i = 0; i < schemas.length; i++) {
       const schema = schemas[i];
