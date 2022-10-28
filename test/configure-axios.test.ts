@@ -1,53 +1,10 @@
 import should from 'should';
 import ApiWrapper from '../src/index';
 
-describe('ApiWrapper', () => {
+describe('ApiWrapper with `configureAxios`', () => {
   let api: ApiWrapper;
-
-  it('should thow an error of ApiWrapper due to missing baseUrl', () => {
-    should(() =>
-        new ApiWrapper([
-          {
-            name: 'newPost',
-            path: '/posts',
-            method: 'post',
-          },
-        ], {})
-    ).throwError();
-  });
-
-  it('should thow an error of ApiWrapper: "name only allow certain words and digits"', () => {
-    should(() =>
-        new ApiWrapper([
-          {
-            name: 'newPost.+',
-            path: '/posts',
-            method: 'post',
-          },
-        ], {
-          baseUrl: 'https://jsonplaceholder.typicode.com',
-        })
-    ).throwError('name only allow certain words and digits');
-  });
-
-  it('should thow an error of ApiWrapper: "Duplicated API: newPost"', () => {
-    should(() =>
-        new ApiWrapper([
-          {
-            name: 'newPost',
-            path: '/posts',
-            method: 'post',
-          },
-          {
-            name: 'newPost',
-            path: '/posts',
-            method: 'post',
-          },
-        ], {
-          baseUrl: 'https://jsonplaceholder.typicode.com',
-        })
-    ).throwError('Duplicated API: newPost');
-  });
+  let reqInterceptorReqData;
+  let resInterceptorResData;
 
   it('should create an instance of ApiWrapper', () => {
     api = new ApiWrapper([
@@ -78,37 +35,32 @@ describe('ApiWrapper', () => {
       },
     ], {
       baseUrl: 'https://jsonplaceholder.typicode.com',
+      configureAxios: (axios) => {
+        axios.interceptors.request.use((request) => {
+          reqInterceptorReqData = request.data;
+          return request;
+        });
+
+        axios.interceptors.response.use((response) => {
+          resInterceptorResData = response.data;
+          return response;
+        });
+      }
     });
   });
 
   it('should do newPost', async () => {
+    const reqData = {
+      title: 'foo!!!!!!',
+      body: 'bar!!',
+      userId: 1
+    };
     const resp = await api.newPost({
-      data: {
-        title: 'foo!!!!!!',
-        body: 'bar!!',
-        userId: 1
-      },
+      data: reqData,
     });
     should(resp).be.an.Object();
-  });
-
-  it('should do newPost with auth', async () => {
-    const resp = await api.newPost({
-      data: {
-        title: 'foo!!!!!!',
-        body: 'bar!!',
-        userId: 1
-      },
-      auth: {
-        username: 'user',
-        password: 'pass'
-      }
-    });
-    should(resp).be.an.Object();
-    should(resp.config.auth).be.containEql({
-      username: 'user',
-      password: 'pass'
-    });
+    should(reqInterceptorReqData).be.have.containEql(reqData);
+    should(resInterceptorResData).be.have.containEql(resp.data);
   });
 
   it('should do updatePost', async () => {
@@ -134,12 +86,6 @@ describe('ApiWrapper', () => {
   it('should do getPosts', async () => {
     const resp = await api.getPosts();
     should(resp).be.an.Object();
-  });
-
-  it('should do getPosts but got error', async () => {
-    await should(api.getPostById({
-      pathParams: [{} as any]
-    })).be.rejectedWith('pathParams is invalid');
   });
 
   it('should do getPosts (with queryString)', async () => {
