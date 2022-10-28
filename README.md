@@ -30,6 +30,9 @@ const api = new ApiWrapper([
     method: '<HTTP Method>',  // e.g. post or POST
   },
 ], {
+  configureAxios(axios){
+    // The axios you can add interceptors or global functions.
+  },
   baseUrl: '<Base URL of API>',   // e.g. https://jsonplaceholder.typicode.com
                                   // Default: http://localhost:3000
   headers: {
@@ -121,6 +124,14 @@ const schema = [
 ];
 
 const api = new ApiWrapper(schema, {
+  configureAxios(item){
+    item.interceptors.request.use(
+      (request) => { console.log('url: %s , req: %o', request.url); return request; },
+    )
+    item.interceptors.response.use(
+      (response) => { console.log('url: %s , res: %o', response.url, response.data); return response; },
+    )
+  },
   baseUrl: 'https://jsonplaceholder.typicode.com',
 });
 
