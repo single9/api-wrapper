@@ -1,11 +1,12 @@
-import { ICApiSchema, IActionParams } from './interfaces';
+import { ICApiSchema, IActionParams, BaseUrl } from './interfaces';
 import { request, parseQueryStringParams, parsePathParams } from './utils';
 
-export default function actions(baseUrl: string, data: ICApiSchema) {
+export default function actions(baseUrl: BaseUrl, data: ICApiSchema) {
   return async (params?: IActionParams) => {
     let qs = '';
     let _data = Object.assign({}, data);
     let _path = _data.path;
+    const _baseUrl = typeof baseUrl === 'function'? await baseUrl() : baseUrl;
 
     if (_data.queryString) {
       qs = parseQueryStringParams(_data.queryString);
@@ -25,7 +26,7 @@ export default function actions(baseUrl: string, data: ICApiSchema) {
       }
     }
 
-    _data.path = baseUrl + _path + (qs && ('?' + qs));
+    _data.path = _baseUrl + _path + (qs && ('?' + qs));
 
     if (!_data.method) throw new Error(`Missing API method: ${_data.name}`);
 

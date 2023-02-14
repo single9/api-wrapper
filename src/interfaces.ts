@@ -9,6 +9,11 @@ export type ApiParamArray = {
   value: string | number;
 }[];
 
+/** This factory function should a string while called. */
+export interface FactoryBaseUrl {
+  (): string | Promise<string>;
+}
+
 export interface ICApiSchema {
   name: string;
   path: string;
@@ -21,9 +26,11 @@ export interface ICApiSchema {
   auth?: IActionParams['auth'];
 }
 
+export type BaseUrl = string | FactoryBaseUrl;
+
 export interface IApiSchemaOptions {
   configureAxios?: ConfigureAxios;
-  baseUrl?: string;
+  baseUrl?: BaseUrl;
   headers?: IActionParams['headers'];
   auth?: IActionParams['auth'];
 }
