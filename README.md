@@ -45,6 +45,25 @@ const api = new ApiWrapper([
 })
 ```
 
+### Factory `baseUrl`
+
+You can use factory function to dynamically set the base URL. This is useful if your host domaint is
+a SRV record.
+
+**Example**
+
+```js
+const api = new ApiWrapper([
+  {
+    name: '<Api Name>',       // only allow certain words and digits
+    path: '<Api Path>',       // e.g. /api/posts
+    method: '<HTTP Method>',  // e.g. post or POST
+  },
+], {
+  baseUrl: async () => resolveSRV(process.env.API_HOST),
+});
+```
+
 Use
 ---
 
