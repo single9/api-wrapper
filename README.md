@@ -47,7 +47,7 @@ const api = new ApiWrapper([
 
 ### Factory `baseUrl`
 
-You can use factory function to dynamically set the base URL. This is useful if your host domaint is
+You can use factory function to dynamically set the base URL. This is useful if your host domain is
 a SRV record.
 
 **Example**
