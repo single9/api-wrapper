@@ -1,6 +1,6 @@
 {
   "name": "@single9/api-wrapper",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Define and Call your restful APIs like a function.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
